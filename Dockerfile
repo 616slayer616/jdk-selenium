@@ -1,4 +1,4 @@
-FROM gradle:jdk11
+FROM mxml/jdk-scp
 USER root
 
 # Install Chrome
