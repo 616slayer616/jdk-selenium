@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM gradle:jdk11
 USER root
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get update && apt-get install -y --no-install-recommends \
