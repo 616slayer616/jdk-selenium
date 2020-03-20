@@ -24,7 +24,8 @@ RUN apt-get install \
    $(lsb_release -cs) \
    stable" && \
    apt-get update && \
-   apt-get install docker-ce-cli
+   apt-get install docker-ce-cli && \
+   rm -rf /var/lib/apt/lists/*
    
 # Install Chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
