@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN ln -s "$(which nodejs)" /usr/local
 
 # Install Docker
-RUN apt-get install \
+RUN apt-get update && apt-get install \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -25,11 +25,12 @@ RUN apt-get install \
    stable" && \
    apt-get update && \
    apt-get install docker-ce-cli && \
-   rm -rf /var/lib/apt/lists/*
+   rm -rf /var/lib/apt/lists/* /var/cache/apt
    
 # Install Chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
     dpkg -i google-chrome-stable_current_amd64.deb || true && \
     apt update && \
     apt install -fy && \
-    dpkg -i google-chrome-stable_current_amd64.deb
+    dpkg -i google-chrome-stable_current_amd64.deb && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt
