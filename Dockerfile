@@ -12,8 +12,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN ln -s "$(which nodejs)" /usr/local
 
 # Install Docker
-RUN curl -fsSL https://get.docker.com/ | sh
-
+RUN apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg2 \
+    software-properties-common && \
+    curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
+    add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/debian \
+   $(lsb_release -cs) \
+   stable" && \
+   apt-get update && \
+   apt-get install docker-ce-cli
+   
 # Install Chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
     dpkg -i google-chrome-stable_current_amd64.deb || true && \
