@@ -11,6 +11,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN ln -s "$(which nodejs)" /usr/local
 
+# Prepare GPG
+RUN apt-get update -y && \
+    apt-get install ca-certificates && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt
+
 # Install Maven
 RUN apt-get update -y && \
     apt-get install maven -y && \
