@@ -5,11 +5,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		openssh-server \
 		netcat-openbsd \
 		git \
-		nodejs \
-	&& apt-get upgrade -y \
-	&& rm -rf /var/lib/apt/lists/* /var/cache/apt
+		nodejs && \
+	apt-get upgrade -y && \
+	rm -rf /var/lib/apt/lists/* /var/cache/apt
 
 RUN ln -s "$(which nodejs)" /usr/local
+
+# Install Maven
+RUN apt-get update -y && \
+    apt-get install maven -y && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt
 
 # Install Docker
 RUN apt-get update && apt-get install -y \
